@@ -2,12 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>frontend</title>
+    <meta name="description" content="Analizeaza rapid un website: SEO, performanta, mobile, securitate si bune practici tehnice."/>
+    <link rel="preload" as="image" href="/full_logo.svg" type="image/svg+xml">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="preload" href="/src/Styles/home.css" as="style" onload="this.onload=null;this.rel='stylesheet'"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+  <div id="root">
+    <div class="logo-container">
+      <img src="/full_logo.svg" width="300" height="120" fetchpriority="high" loading="eager" decoding="async" alt="logo">
+    </div>
+  </div>
+  <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
