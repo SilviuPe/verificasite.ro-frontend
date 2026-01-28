@@ -83,7 +83,58 @@ export type AnalyzeResponse = {
     checks?: Record<string, unknown>;
 };
 
+
+export type LoginResponse = {
+    access_token: string;
+    token_type: "bearer";
+};
+
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
+export async function login(username: string, password: string): Promise<LoginResponse> {
+    const res = await fetch(`${API_BASE}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+    });
+
+    if (!res.ok) {
+        let msg = `Login failed (${res.status})`;
+        try {
+            const data = await res.json();
+            if (data?.detail) {
+                msg = typeof data.detail === "string" ? data.detail : JSON.stringify(data.detail);
+            }
+        } catch {
+            console.log()
+        }
+        throw new Error(msg);
+    }
+
+    const data = (await res.json()) as LoginResponse;
+    // salvare token in localStorage
+    localStorage.setItem("access_token", data.access_token);
+    return data;
+}
+
+// Verifica daca userul este logat
+export function isLoggedIn(): boolean {
+    const token = localStorage.getItem("access_token");
+    if (!token) return false;
+
+    try {
+        // decode simplu fara verificare criptografica
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        return !!payload.sub; // sub = username
+    } catch {
+        return false;
+    }
+}
+
+// optional: functie pentru logout
+export function logout() {
+    localStorage.removeItem("access_token");
+}
 
 export function normalizeWebsiteInput(raw: string): string {
     const s = (raw || "").trim();

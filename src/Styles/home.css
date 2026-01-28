@@ -535,6 +535,72 @@
     padding: 0.5rem 3rem 2rem;
 }
 
+
+/* AdminPage.css */
+.admin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+}
+
+.admin-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+.logo {
+    width: 240px;
+    margin-bottom: 20px;
+}
+
+.input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+    text-align: center;
+    outline: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.5s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-bottom-color: #66afe9;
+}
+
+.btn {
+    width: 50%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4da6ff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: #3399ff;
+}
+
+.error {
+    color: red;
+    margin-bottom: 15px;
+}
+
+
 /* Responsive */
 @media (max-width: 900px) {
     .footer-top {
