@@ -1,12 +1,11 @@
 import type { AnalyzeResponse } from "../../api";
-import {Overview} from '../Overview';
-import {SeoBasics} from '../SeoBasics';
-import {ContentStructure} from '../ContentStructure';
-import {Images} from '../Images';
-import {Links} from '../Links';
-import {Technical} from '../Technical';
-import {Indexing} from '../Indexing';
-import {Platform} from '../Platform';
+import {DataStructure} from '../DataStructure';
+import {Optimizations} from '../Optimizations';
+import {MobileAndBrowser} from '../MobileAndBrowser';
+import {Usability} from '../Usability';
+import {Technologies} from '../Technologies';
+import {SocialMedia} from '../SocialMedia';
+import {Marketing} from '../Marketing';
 
 type Props = {
     data: AnalyzeResponse;
@@ -15,16 +14,13 @@ type Props = {
 export const WebsiteReport = ({ data }: Props) => {
     return (
         <div>
-            <ContentStructure data={data} />
-            <div className="report">
-                <Overview data={data} />
-                <SeoBasics data={data} />
-                <Images data={data} />
-                <Links data={data} />
-                <Technical data={data} />
-                <Indexing data={data} />
-                <Platform data={data} />
-            </div>
+            <Optimizations data={data} />
+            <DataStructure data={data}/>
+            <MobileAndBrowser data={data}/>
+            <Usability data={data}/>
+            <Technologies data={data}/>
+            <SocialMedia data={data}/>
+            <Marketing data={data}/>
         </div>
     );
 };

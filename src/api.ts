@@ -15,7 +15,10 @@ export type AnalyzeResponse = {
     status_code: number;
     ip_address: string | null;
     ssl_ok: boolean;
-
+    screenshots: {
+        desktop: string;
+        mobile: string;
+    };
     seo: {
         title?: { value: string; length: number };
         meta_description?: { value: string; length: number };
@@ -39,19 +42,48 @@ export type AnalyzeResponse = {
         custom_404?: Record<string, unknown>;
     };
 
-    structured_data?: Record<string, unknown>;
-    social?: Record<string, unknown>;
+    structured_data?: {
+        schema_org_jsonld : {
+            jsonld_blocks: number;
+            jsonld_samples: string[];
+        }
+    }
+    social?: {
+        opengraph?: {
+            present: boolean;
+            count?: number;
+        },
+        profiles?: {
+            facebook: {
+                present: boolean,
+                links: string[],
+            },
+            instagram: {
+                present: boolean,
+                links: string[]
+            },
+        },
+        language: {
+            detected: boolean,
+            language: string,
+            language_code: string,
+            source: string,
+        }
+    }
     tech?: {
         google_analytics_detected?: boolean;
         google_tag_manager_detected?: boolean;
         jquery_detected?: boolean;
         note?: string;
         wordpress?: WordPressInfo;
+        facebook_pixel: {
+            present: boolean;
+        }
     };
     checks?: Record<string, unknown>;
 };
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://51.38.65.188:8000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
 
 export function normalizeWebsiteInput(raw: string): string {
     const s = (raw || "").trim();
