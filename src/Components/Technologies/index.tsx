@@ -1,9 +1,41 @@
+import {useState, useEffect} from 'react';
+
 import type {AnalyzeResponse} from "../../api.ts";
 import {AuditSection} from '../AuditSection';
 import type {AuditRowPropsI} from '../AuditRow/types';
 import TechnologiesIcon from '../../assets/icon-technology.svg';
+import type {TechnologiesStateI} from './types';
 
 const Technologies = ({ data }: { data: AnalyzeResponse }) => {
+
+    const [state, setState] = useState<TechnologiesStateI>({
+        last_version_of_wp: undefined
+    });
+    const fetchLatestWordPressVersion = async () => {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_WORDPRESS_API_URL}`,);
+
+            if (!res.ok) {
+                setState({last_version_of_wp: undefined})
+            }
+
+            const data = await res.json();
+
+            if (data && data.offers) {
+                const last_version = data.offers[0];
+                if (last_version && last_version.version) {
+                    setState({last_version_of_wp: last_version.version});
+                }
+            }
+            else {
+                setState({last_version_of_wp: undefined})
+            }
+
+        } catch (err: unknown) {
+            console.error(err);
+            setState({last_version_of_wp: undefined})
+        }
+    }
 
     const rows: AuditRowPropsI[] = [
         {
@@ -55,12 +87,12 @@ const Technologies = ({ data }: { data: AnalyzeResponse }) => {
         },
         {
             row_type: data.tech?.wordpress?.is_wordpress ? 'success' : 'error',
-            key_: 'Wordpress',
+            key_: "Wordpress",
             value: <>
                 {
                     data.tech?.wordpress?.is_wordpress
                         ? <div style={{textAlign: 'start'}}>
-                            <p style={{margin: 5}}>Site-ul este construit folosind Wordpress ({data.tech?.wordpress?.version ? `Versiunea: ${data.tech?.wordpress?.version}` : "Versiune nedetectată"}).</p>
+                            <p style={{margin: 5}}>Site-ul este construit folosind Wordpress {data.tech?.wordpress?.version ? `${data.tech?.wordpress?.version === state.last_version_of_wp ? `si foloseste ultima versiune (${state.last_version_of_wp})` : `dar foloseste versiunea ${data.tech?.wordpress?.version}. Ultima versiune fiind ${state.last_version_of_wp}. Va recomandam sa faceti update in ceea ce priveste versiunea Wordpress-ului.`}` : "(Versiune nedetectată)"}</p>
                         </div>
                         : <div style={{textAlign: 'start'}}>
                             <p style={{margin: 5}}>Site-ul nu a fost detectat ca folosind Wordpress.</p>
@@ -69,6 +101,10 @@ const Technologies = ({ data }: { data: AnalyzeResponse }) => {
             info: "WordPress este un sistem de management al continutului open source, folosit pentru crearea de site uri si magazine online, extensibil prin teme si pluginuri customizabile."
         },
     ]
+
+    useEffect(() => {
+        fetchLatestWordPressVersion();
+    }, []);
 
     return (
         <AuditSection title="TEHNOLOGII" image={TechnologiesIcon} rows={rows}/>
