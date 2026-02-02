@@ -8,4 +8,7 @@ type Audit = {
     date: string;
 };
 
-export type { Audit };
+type SortKey = keyof Audit | null;
+type SortDirection = "asc" | "desc";
+
+export type { Audit, SortKey, SortDirection };

@@ -89,7 +89,7 @@ export type LoginResponse = {
     token_type: "bearer";
 };
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 export async function login(username: string, password: string): Promise<LoginResponse> {
     const res = await fetch(`${API_BASE}/login`, {
@@ -170,4 +170,80 @@ export async function analyzeWebsite(urlInput: string, signal?: AbortSignal): Pr
     }
 
     return (await res.json()) as AnalyzeResponse;
+}
+
+
+export async function exportAuditsExcelByIds(ids: number[]) {
+    if (!ids || ids.length === 0) return;
+
+    const token = localStorage.getItem("access_token");
+    if (!token) throw new Error("Nu esti logat");
+
+    // Construim query params din ID-uri
+    const params = new URLSearchParams();
+    ids.forEach(id => params.append("ids", id.toString()));
+
+    const res = await fetch(`${API_BASE}/export_xlsx?${params.toString()}`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.detail || `Request failed (${res.status})`);
+    }
+
+    // Preluam blob-ul XLSX
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    // Cream link pentru download
+    const a = document.createElement("a");
+    a.href = url;
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "_");
+    a.download = `audits_${timestamp}.xlsx`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+}
+
+
+export async function exportAuditsPDFByIds(ids: number[]) {
+    if (!ids || ids.length === 0) return;
+
+    const token = localStorage.getItem("access_token");
+    if (!token) throw new Error("Nu esti logat");
+
+    // Construim query params din ID-uri
+    const params = new URLSearchParams();
+    ids.forEach(id => params.append("ids", id.toString()));
+
+    const res = await fetch(`${API_BASE}/export_pdf?${params.toString()}`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.detail || `Request failed (${res.status})`);
+    }
+
+    // Preluam blob-ul XLSX
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+
+    // Cream link pentru download
+    const a = document.createElement("a");
+    a.href = url;
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "_");
+    a.download = `audits_${timestamp}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
 }

@@ -1,6 +1,6 @@
 // src/pages/AdminPage.tsx
 import {useEffect, useState} from "react";
-import { login, isLoggedIn, logout } from "../../api.ts";
+import { login, isLoggedIn } from "../../api.ts";
 import {AuditTable} from '../../Components';
 
 import type {adminPropsI} from "./types";
@@ -19,14 +19,10 @@ const Admin = (props: adminPropsI) => {
         try {
             await login(username, password);
             setLoggedIn(true);
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err: unknown) {
+            //@ts-expect-error err must be any or unknown but the IDE consider it an issue
+            setError(err);
         }
-    };
-
-    const handleLogout = () => {
-        logout();
-        setLoggedIn(false);
     };
 
     useEffect(() => {

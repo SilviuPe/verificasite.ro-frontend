@@ -600,6 +600,113 @@
     margin-bottom: 15px;
 }
 
+.audit-page {
+    font-family: 'Inter sans', sans-serif;
+}
+
+.audits-options {
+    padding: 1rem 0.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.audits-options button {
+    padding: 0.5rem 1.5rem;
+
+    cursor: pointer;
+
+    border-radius: 5px;
+
+    border: 1px solid ;
+}
+
+.audits-table-container {
+    max-height: 500px;
+    overflow-y: auto; /* scroll vertical */
+}
+
+.audits-table-content {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* OBLIGATORIU */
+}
+
+.audits-table-content thead th {
+    cursor: pointer;
+    color: var(--accent);
+
+    position: sticky;
+    top: 0;
+    background: white; /* sau ce background vrei */
+    z-index: 1;
+}
+
+.audits-table-content tbody td {
+    color: rgba(0,0,0,0.75);
+}
+
+.audits-table-content th,
+.audits-table-content td {
+    max-width: 100px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: middle;
+    font-family: 'Inter sans', sans-serif;
+}
+
+.truncate-html-colon {
+    white-space: nowrap;      /* o singura linie */
+    overflow: hidden;         /* ascunde ce depaseste */
+    text-overflow: ellipsis;  /* afiseaza ... */
+    cursor: pointer;
+}
+
+/* ID */
+.audits-table-content th:nth-child(1),
+.audits-table-content td:nth-child(1) {
+    width: 60px;
+}
+
+/* Device */
+.audits-table-content th:nth-child(6),
+.audits-table-content td:nth-child(6) {
+    width: 60px;
+}
+
+/* HTML - mai mare */
+.audits-table-content th:nth-child(4),
+.audits-table-content td:nth-child(4) {
+    width: 320px;
+}
+
+.audits-table-content th {
+    cursor: pointer;
+    user-select: none;
+}
+
+.audits-table-content th.sorted-asc::after {
+    content: " ▲";
+    font-size: 12px;
+}
+
+.audits-table-content th.sorted-desc::after {
+    content: " ▼";
+    font-size: 12px;
+}
+
+.audits-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.audits-filters input,
+.audits-filters select {
+    padding: 6px 8px;
+    font-size: 14px;
+}
 
 /* Responsive */
 @media (max-width: 900px) {

@@ -31,20 +31,6 @@ const SocialMedia = ({ data }: { data: AnalyzeResponse }) => {
             </div>,
             info: "În funcție de industria în care activează compania, contul de Instagram configurat corespunzător poate fi o modalitate de a genera lead-uri noi prin realizarea de campanii pe platformă."
         },
-        {
-            row_type: data.screenshots.mobile && data.screenshots.desktop ? 'success' : !data.screenshots.mobile && !data.screenshots.desktop ? 'error' : 'warning',
-            key_: 'Limba',
-            value: <div style={{textAlign: 'start', display: "flex"}}>
-                {
-                    data.social?.language?.detected
-                        ? <div style={{padding: "0.5rem 1rem", border: "1px solid rgba(0,0,0,0.25)", borderRadius: "10px"}}>
-                            <p style={{margin: 5}}>{data.social?.language?.language}</p>
-                        </div>
-                        :  <p style={{margin: 5}}>Limba website-ului nu a putut fi detectată.</p>
-                }
-            </div>,
-            info: "Este esențial ca site-ul să fie configurat și scris în cel puțin 2 limbi, cea nativă și o limbă străină. Astfel se cresc șansele de atracție a clienților potențiali și extindere a activității companiei pe plan internațional."
-        },
     ]
 
     return <AuditSection title="SOCIAL MEDIA" image={SocialMediaIcon} rows={rows}/>;
