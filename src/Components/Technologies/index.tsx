@@ -86,7 +86,7 @@ const Technologies = ({ data }: { data: AnalyzeResponse }) => {
             info: "Certificatul SSL este o dovadă a faptului că datele utilizatorilor sunt protejate atunci când aceștia accesează site-ul și că există un nivel de securitate crescut împotriva atacurilor cibernetice. Certificatul SSL întărește încrederea utilizatorilor în site și în companie."
         },
         {
-            row_type: data.tech?.wordpress?.is_wordpress ? 'success' : 'error',
+            row_type: data.tech?.wordpress?.is_wordpress ? data.tech?.wordpress?.version ? data.tech?.wordpress?.version === state.last_version_of_wp ? 'success' : 'error' : 'success' : 'error',
             key_: "Wordpress",
             value: <>
                 {
