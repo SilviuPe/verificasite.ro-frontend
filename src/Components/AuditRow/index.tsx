@@ -49,6 +49,7 @@ const AuditRow = (props: AuditRowPropsI) => {
                 state.dropdownInfo.open ? "open" : ""
             }`}
         >
+            <h2>INFO - {key_}</h2>
             <p style={{ whiteSpace: "pre-line" }}>{info}</p>
         </div>
     </div>
