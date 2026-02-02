@@ -107,7 +107,16 @@ const Optimizations = ({ data }: { data: AnalyzeResponse }) => {
                 {
                     data.seo.links?.broken_links?.broken === 0
                     ? <p style={{margin: 5}}>Toate link-urile sunt funcționale.</p>
-                    : <p style={{margin: 5}}>Am gasit {data.seo.links?.broken_links?.broken}  {data.seo.links?.broken_links?.broken === 1 ? 'link nefuncțional' : 'link-uri nefuncționale'}.</p>
+                        : <div>
+                            <p style={{margin: 5}}>Am gasit {data.seo.links?.broken_links?.broken}  {data.seo.links?.broken_links?.broken === 1 ? 'link nefuncțional' : 'link-uri nefuncționale'}.</p>
+                            <ul style={{listStyle: 'inside'}}>
+                                <li>
+                                    {data.seo.links?.broken_links?.broken_samples ? data.seo.links?.broken_links?.broken_samples.map((sample, index: number) => (
+                                        <a href={sample.url} key={`${sample} -- ${index}`}>{sample.url}</a>
+                                    )) : null}
+                                </li>
+                            </ul>
+                        </div>
                 }
             </div>,
             info: "Orice link nefuncțional are un efect negativ asupra performanței site-ului. Asigurați-vă că orice link către o pagină internă sau externă site-ului funcționează perfect."
