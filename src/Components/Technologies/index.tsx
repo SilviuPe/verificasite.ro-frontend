@@ -37,6 +37,24 @@ const Technologies = ({ data }: { data: AnalyzeResponse }) => {
         }
     }
 
+    useEffect(() => {
+        fetchLatestWordPressVersion();
+    }, []);
+
+    const check_if_no_tech = () => {
+        if (data.tech?.google_analytics) return true;
+        if (data.tech?.google_tag_manager) return true;
+        if (data.tech?.jquery) return true;
+        if (data.tech?.google_maps) return true;
+        if (data.tech?.google_fonts) return true;
+        if (data.tech?.cloudflare) return true;
+        if (data.tech?.hotjar) return true;
+        if (data.tech?.rechapta) return true;
+        if (data.tech?.google_ads) return true;
+
+        return false;
+    }
+
     const rows: AuditRowPropsI[] = [
         {
             row_type: data.ip_address ? 'success' : 'error',
@@ -54,30 +72,40 @@ const Technologies = ({ data }: { data: AnalyzeResponse }) => {
             info: "O adresă de IP validă este importantă pentru a primi și a trimite informațiile corecte pe internet. Adresa de IP direcționează traficul de internet acolo unde trebuie să ajungă și direcționează e-mailurile către căsuța de e-mail asociată cu site-ul companiei"
         },
         {
-            row_type: !data.tech?.google_analytics_detected && !data.tech?.google_tag_manager_detected && !data.tech?.jquery_detected ? 'error' : 'success',
+            row_type: check_if_no_tech() ? 'success' : 'error',
             key_: 'Analytics',
             value: <>
                 {
                     data.tech
                         ? <div style={{textAlign: 'start', display: 'flex'}}>
-                            {data.tech?.google_analytics_detected ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Analytics</p> : null}
-                            {data.tech?.google_tag_manager_detected ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Manager</p> : null}
-                            {data.tech?.jquery_detected ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>jQuery JavaScript library</p> : null}
+                            {data.tech?.google_analytics ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Analytics</p> : null}
+                            {data.tech?.google_tag_manager ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Manager</p> : null}
+                            {data.tech?.google_maps ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Maps</p> : null}
+                            {data.tech?.google_fonts ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Fonts</p> : null}
+                            {data.tech?.google_ads ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Ads</p> : null}
+                            {data.tech?.jquery ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>jQuery JavaScript</p> : null}
+                            {data.tech?.cloudflare ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Cloudflare</p> : null}
+                            {data.tech?.hotjar ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Hotjar</p> : null}
+                            {data.tech?.rechapta ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>ReChapta</p> : null}
                         </div>
                         : <div style={{textAlign: 'start'}}>
-                            <p style={{margin: 5}}>Adresa IP nu a putut fi identificata.</p>
+                            <p style={{margin: 5}}>Nicio technologie nu a fost identificata pe website.</p>
                         </div>
                 }</>,
             info: "Analytics reprezinta procesul de colectare, masurare si analiza a datelor despre comportamentul utilizatorilor pe un site, oferind informatii despre trafic, surse, interactiuni si performanta, pentru optimizarea conversiilor."
         },
         {
-            row_type: data.ssl_ok ? 'success' : 'error',
+            row_type: data.checks?.ssl_certificate ? 'success' : 'error',
             key_: 'Certificat securitate SSL',
             value: <>
                 {
-                    data.ssl_ok
+                    data.checks?.ssl_certificate
                         ? <div style={{textAlign: 'start'}}>
-                            <p style={{margin: 5}}>Site-ul contine un certificat SSL.</p>
+                            <ul>
+                                <li><p style={{margin: 5}}>Domeniu certificat: {data.checks?.ssl_certificate?.common_name ? data.checks?.ssl_certificate?.common_name : "neidentificat"}</p></li>
+                                <li><p style={{margin: 5}}>Autoritate emitenta: {data.checks?.ssl_certificate?.raw?.issuer?.organizationName ? data.checks?.ssl_certificate?.raw?.issuer?.organizationName : "neidentificat"}</p></li>
+                                <li><p style={{margin: 5}}>Serie emitent: {data.checks?.ssl_certificate?.raw?.issuer?.commonName ? data.checks?.ssl_certificate?.raw?.issuer?.commonName : "neidentificat"}</p></li>
+                            </ul>
                         </div>
                         : <div style={{textAlign: 'start'}}>
                             <p style={{margin: 5}}>Nu - site-ul nu contine un certificat SSL.</p>
@@ -101,10 +129,6 @@ const Technologies = ({ data }: { data: AnalyzeResponse }) => {
             info: "WordPress este un sistem de management al continutului open source, folosit pentru crearea de site uri si magazine online, extensibil prin teme si pluginuri customizabile."
         },
     ]
-
-    useEffect(() => {
-        fetchLatestWordPressVersion();
-    }, []);
 
     return (
         <AuditSection title="TEHNOLOGII" image={TechnologiesIcon} rows={rows}/>

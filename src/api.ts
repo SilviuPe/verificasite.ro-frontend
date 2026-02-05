@@ -71,16 +71,39 @@ export type AnalyzeResponse = {
         }
     }
     tech?: {
-        google_analytics_detected?: boolean;
-        google_tag_manager_detected?: boolean;
-        jquery_detected?: boolean;
+        google_ads?: boolean;
+        google_analytics?: boolean;
+        google_tag_manager?: boolean;
+        jquery?: boolean;
+        google_maps?: boolean;
+        google_fonts?: boolean;
+        cloudflare: boolean;
+        hotjar: boolean;
+        rechapta: boolean;
         note?: string;
         wordpress?: WordPressInfo;
         facebook_pixel: {
             present: boolean;
         }
     };
-    checks?: Record<string, unknown>;
+    checks?: {
+        ssl_certificate?: {
+            common_name?: string;
+            issuer?: string;
+            present?: boolean;
+            raw?: {
+                issuer?: {
+                    commonName?: string;
+                    countryName?: string;
+                    organizationName?: string;
+                },
+                subject?: {
+                    commonName?: string;
+                }
+            },
+            valid_to: string;
+        }
+    };
 };
 
 
