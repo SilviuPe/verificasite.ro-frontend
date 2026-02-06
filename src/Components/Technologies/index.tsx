@@ -55,6 +55,19 @@ const Technologies = ({ data }: { data: AnalyzeResponse }) => {
         return false;
     }
 
+    const check_plugins = () => {
+        if (data.plugins && data.plugins.plugins && data.plugins.plugins.length) {
+            for (const plugin of data.plugins.plugins) {
+                console.log(plugin);
+                if (plugin.current_version !== plugin.latest_version && plugin.current_version !== null) {
+                    return false;
+                }
+            }
+            return true
+        }
+        return false;
+    }
+
     const rows: AuditRowPropsI[] = [
         {
             row_type: data.ip_address ? 'success' : 'error',
@@ -127,6 +140,27 @@ const Technologies = ({ data }: { data: AnalyzeResponse }) => {
                         </div>
                 }</>,
             info: "WordPress este un sistem de management al continutului open source, folosit pentru crearea de site uri si magazine online, extensibil prin teme si pluginuri customizabile."
+        },
+        {
+            row_type: check_plugins() ? "success" : "error",
+            key_: "Plugins",
+            value: <>
+                {
+                    data.plugins?.plugins && data.plugins?.plugins?.length > 0
+                        ? <div style={{textAlign: 'start'}}>
+                            <ul>
+                                {
+                                    data.plugins.plugins.map((plugin, index: number) => (
+                                        <li style={{marginBottom:10}} key={`${plugin} -- ${index}`}>Plugin detectat: <b>{plugin.name}</b>, {plugin.current_version ? plugin.current_version === plugin.latest_version ? `versiunea este la zi (${plugin.current_version})` : plugin.latest_version === null ? "dar nu este hostat de WordPress" : `dar versiunea este outdated (ultima versiune fiind ${plugin.latest_version}, iar versiunea curenta ${plugin.current_version})` : `dar versiunea nu a putut fi detectata (ultima versiune: ${plugin.latest_version})`}.</li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                        : <div style={{textAlign: 'start'}}>
+                            <p style={{margin: 5}}>Nu au fost detectate plugin-uri.</p>
+                        </div>
+                }</>,
+            info: "Pluginurile sunt extensii software care adauga functionalitati suplimentare unui website WordPress, fara a fi necesara modificarea codului de baza al platformei. Ele permit extinderea capabilitatilor unui site intr-un mod modular si reutilizabil."
         },
     ]
 

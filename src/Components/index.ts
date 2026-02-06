@@ -1,6 +1,5 @@
 export * from './Optimizations';
 export * from './SocialMedia';
-export * from './Indexing';
 export * from './Usability';
 export * from './DataStructure';
 export * from './Marketing';

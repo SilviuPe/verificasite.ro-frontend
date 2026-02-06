@@ -8,22 +8,15 @@ const DataStructure = ({ data }: { data: AnalyzeResponse }) => {
 
     const rows: AuditRowPropsI[] = [
         {
-            row_type: data.structured_data?.schema_org_jsonld?.jsonld_blocks ? data.structured_data?.schema_org_jsonld?.jsonld_blocks > 0  ? 'success'  : 'error' : 'error',
+            row_type: data.structured_data?.schema_org?.formats?.detected?.json_ld || data.structured_data?.schema_org?.formats?.detected?.microdata || data.structured_data?.schema_org?.formats?.detected?.rdfa ? 'success' : 'error',
             key_: 'Schema.org',
             value: <>
                 {
-                    data.structured_data?.schema_org_jsonld?.jsonld_blocks ?
-                        data.structured_data?.schema_org_jsonld?.jsonld_blocks > 0
-                        ? <div style={{textAlign: 'start'}}>
-
-                            <p style={{margin: 5}}>Schema.org găsit.</p>
+                    data.structured_data?.schema_org?.formats?.detected?.json_ld || data.structured_data?.schema_org?.formats?.detected?.microdata || data.structured_data?.schema_org?.formats?.detected?.rdfa ?
+                        <div style={{textAlign: 'start'}}>
+                            <p style={{margin: 5}}>Schema.org găsit. Format: <b>{data.structured_data?.schema_org?.formats?.detected?.json_ld ? 'JSON_LD' : data.structured_data?.schema_org?.formats?.detected?.microdata ? 'MicroData' : data.structured_data?.schema_org?.formats?.detected?.rdfa ? "RDFA" : null }</b></p>
                         </div>
-                            : <div style={{textAlign: 'start'}}>
-
-                                <p style={{margin: 5}}>Schema.org nu a fost găsit.</p>
-                            </div>
                         : <div style={{textAlign: 'start'}}>
-
                             <p style={{margin: 5}}>Schema.org nu a fost găsit.</p>
                         </div>
 

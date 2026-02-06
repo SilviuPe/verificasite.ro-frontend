@@ -6,6 +6,12 @@ export type WordPressInfo = {
     version_reason: string | null;
 };
 
+export type WordPressPlugin = {
+    name: string;
+    current_version: string | undefined;
+    latest_version: string | undefined;
+}
+
 export type AnalyzeResponse = {
     input_url: string;
     normalized_candidates: string[];
@@ -43,9 +49,14 @@ export type AnalyzeResponse = {
     };
 
     structured_data?: {
-        schema_org_jsonld : {
-            jsonld_blocks: number;
-            jsonld_samples: string[];
+        schema_org : {
+            formats: {
+                detected: {
+                    json_ld: boolean;
+                    microdata: boolean;
+                    rdfa: boolean;
+                };
+            }
         }
     }
     social?: {
@@ -104,6 +115,9 @@ export type AnalyzeResponse = {
             valid_to: string;
         }
     };
+    plugins?: {
+        plugins?: WordPressPlugin[];
+    }
 };
 
 
