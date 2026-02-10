@@ -154,7 +154,7 @@ const Optimizations = ({ data }: { data: AnalyzeResponse }) => {
             value: <div style={{textAlign: 'start'}}>
                 {
                     data.seo.sitemap?.present
-                        ? <p style={{margin: 5}}>Sitemap găsit.</p>
+                        ? <p style={{margin: 5}}>Sitemap găsit. {data.seo.sitemap?.url ? <a target="_blank" href={data.seo.sitemap?.url}>{data.seo.sitemap?.url.replace('http://','').replace('https://','')}</a> : null}</p>
                         : <p style={{margin: 5}}>Sitemap nu a fost găsit.</p>
                 }
             </div>,

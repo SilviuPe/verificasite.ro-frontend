@@ -42,7 +42,11 @@ export type AnalyzeResponse = {
         };
         www_resolve?: Record<string, unknown>;
         robots_txt?: Record<string, unknown>;
-        sitemap?: Record<string, unknown>;
+        sitemap?: {
+            present?: boolean | null;
+            url?: string | null;
+            status_code?: number | null;
+        }
         mobile?: Record<string, unknown>;
         favicon?: Record<string, unknown>;
         custom_404?: Record<string, unknown>;
