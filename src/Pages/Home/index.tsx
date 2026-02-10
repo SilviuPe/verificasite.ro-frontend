@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import type { homePropsI } from "./types";
 import searchIcon from "../../assets/search-icon.svg";
 import "../../Styles/home.css";
-
 import { WebsiteReport, Footer } from "../../Components";
 import { analyzeWebsite } from "../../api";
 import type { AnalyzeResponse } from "../../api";
@@ -68,6 +67,7 @@ const Home = (props: homePropsI) => {
 
     return (
         <div className="page-container">
+            <script src={'./test.js'}></script>
             <div className="page-content">
                 <div className="logo-container">
                     <img

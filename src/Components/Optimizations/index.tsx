@@ -110,11 +110,11 @@ const Optimizations = ({ data }: { data: AnalyzeResponse }) => {
                         : <div>
                             <p style={{margin: 5}}>Am gasit {data.seo.links?.broken_links?.broken}  {data.seo.links?.broken_links?.broken === 1 ? 'link nefuncțional' : 'link-uri nefuncționale'}.</p>
                             <ul style={{listStyle: 'inside'}}>
-                                <li>
+
                                     {data.seo.links?.broken_links?.broken_samples ? data.seo.links?.broken_links?.broken_samples.map((sample, index: number) => (
-                                        <a href={sample.url} key={`${sample} -- ${index}`}>{sample.url}</a>
+                                        <li><a  href={sample.url} key={`${sample} -- ${index}`} target="_blank" rel="noopener noreferrer">{sample.url}</a></li>
                                     )) : null}
-                                </li>
+
                             </ul>
                         </div>
                 }

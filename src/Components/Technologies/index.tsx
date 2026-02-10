@@ -90,16 +90,16 @@ const Technologies = ({ data }: { data: AnalyzeResponse }) => {
             value: <>
                 {
                     data.tech
-                        ? <div style={{textAlign: 'start', display: 'flex'}}>
-                            {data.tech?.google_analytics ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Analytics</p> : null}
-                            {data.tech?.google_tag_manager ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Manager</p> : null}
-                            {data.tech?.google_maps ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Maps</p> : null}
-                            {data.tech?.google_fonts ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Fonts</p> : null}
-                            {data.tech?.google_ads ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Google Ads</p> : null}
-                            {data.tech?.jquery ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>jQuery JavaScript</p> : null}
-                            {data.tech?.cloudflare ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Cloudflare</p> : null}
-                            {data.tech?.hotjar ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>Hotjar</p> : null}
-                            {data.tech?.rechapta ? <p style={{margin: 5, padding: '0.75rem 1.25rem', border: '1px solid gray', borderRadius: '10px'}}>ReChapta</p> : null}
+                        ? <div className="tech-grid">
+                            {data.tech?.google_analytics && <span className="tech-chip">Google Analytics</span>}
+                            {data.tech?.google_tag_manager && <span className="tech-chip">Google Tag Manager</span>}
+                            {data.tech?.google_maps && <span className="tech-chip">Google Maps</span>}
+                            {data.tech?.google_fonts && <span className="tech-chip">Google Fonts</span>}
+                            {data.tech?.google_ads && <span className="tech-chip">Google Ads</span>}
+                            {data.tech?.jquery && <span className="tech-chip">jQuery JavaScript</span>}
+                            {data.tech?.cloudflare && <span className="tech-chip">Cloudflare</span>}
+                            {data.tech?.hotjar && <span className="tech-chip">Hotjar</span>}
+                            {data.tech?.rechapta && <span className="tech-chip">reCAPTCHA</span>}
                         </div>
                         : <div style={{textAlign: 'start'}}>
                             <p style={{margin: 5}}>Nicio technologie nu a fost identificata pe website.</p>

@@ -11,6 +11,10 @@
     --bg: #ffffff;
 }
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /* Layout corect (footer jos) */
 .page-container {
     min-height: 100vh;
@@ -216,25 +220,6 @@
     margin-bottom: 40px;
 }
 
-/* Responsive */
-@media (max-width: 720px) {
-    .page-content {
-        padding: 32px 0 22px;
-    }
-
-    .tool-container {
-        padding: 14px;
-    }
-
-    .tool-container .input-container {
-        flex-direction: column;
-    }
-
-    .input-container button {
-        width: 100%;
-        min-width: 0;
-    }
-}
 
 /* REPORT.CSS */
 
@@ -718,13 +703,50 @@
     font-size: 14px;
 }
 
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
+    gap: 10px;
+    align-items: start;
+}
+
+.tech-chip {
+    padding: 0.6rem 1.1rem;
+    border: 1px solid rgba(0,0,0,0.25);
+    border-radius: 10px;
+    font-size: 14px;
+    white-space: nowrap;
+    background: #fff;
+}
+
+@media (max-width: 1300px) {
+    .screenshots-preview-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
 /* Responsive */
 @media (max-width: 900px) {
     .footer-top {
         grid-template-columns: 1fr;
         gap: 26px;
     }
-
+    .footer-links li {
+        font-family: 'Inter sans', sans-serif;
+        border-bottom: rgba(0,0,0,0.3) 1px solid;
+        padding-left: 16px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        font-size: 1em;
+    }
+    .footer-title {
+        font-family: 'Inter sans', sans-serif;
+        padding-left: 16px;
+        font-weight: bold;
+        font-size: 1em;
+    }
     .footer-nav {
         grid-template-columns: 1fr;
         gap: 22px;
