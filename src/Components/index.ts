@@ -7,3 +7,4 @@ export * from './Technologies';
 export * from './WebsiteReport';
 export * from './Footer';
 export * from './AuditTable';
+export * from './GeneralScore';

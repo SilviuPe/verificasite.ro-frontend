@@ -121,6 +121,13 @@ export type AnalyzeResponse = {
     };
     plugins?: {
         plugins?: WordPressPlugin[];
+    },
+    vulnerabilities?: {
+        plugins_with_vulns: [],
+        total_critical: number,
+        total_high: number,
+        total_low: number,
+        total_medium: number,
     }
 };
 
@@ -288,3 +295,4 @@ export async function exportAuditsPDFByIds(ids: number[]) {
     a.remove();
     window.URL.revokeObjectURL(url);
 }
+

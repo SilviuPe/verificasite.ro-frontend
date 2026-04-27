@@ -58,7 +58,6 @@ const Technologies = ({ data }: { data: AnalyzeResponse }) => {
     const check_plugins = () => {
         if (data.plugins && data.plugins.plugins && data.plugins.plugins.length) {
             for (const plugin of data.plugins.plugins) {
-                console.log(plugin);
                 if (plugin.current_version !== plugin.latest_version && plugin.current_version !== null) {
                     return false;
                 }

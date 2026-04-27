@@ -97,8 +97,34 @@ const Home = (props: homePropsI) => {
                         />
 
                         <button onClick={onStart} disabled={loading}>
-                            {loading ? "ANALIZEZ..." : "START DIAGNOSTIC"}
-                            <img alt="search icon" src={searchIcon} />
+                            {loading ? (
+                                <div style={{display:'flex', alignItems:"items-center", justifyContent: "center",  gap: 10}}>
+                                    <style>{`
+                                          @keyframes spin {
+                                            from {
+                                              transform: rotate(0deg);
+                                            }
+                                            to {
+                                              transform: rotate(360deg);
+                                            }
+                                          }
+                                          
+                                          .spinner-white {
+                                            width: 20px;
+                                            height: 20px;
+                                            border: 3px solid white;
+                                            border-top: 3px solid transparent;
+                                            border-radius: 50%;
+                                            animation: spin 0.8s linear infinite;
+                                          }
+                                    `}</style>
+                                    <span>SE ANALIZEAZĂ...</span>
+                                    <div className="spinner-white"></div>
+                                </div>
+                            ) : (
+                                "START DIAGNOSTIC"
+                            )}
+                            {loading ? null : <img alt="search icon" src={searchIcon} />}
                         </button>
                     </div>
 
@@ -114,10 +140,6 @@ const Home = (props: homePropsI) => {
 
                     {error && <div className="feedback error">{error}</div>}
                 </div>
-
-                {/* Zona de continut dintre tool si footer:
-            - daca NU ai rezultat: spatiu alb
-            - daca ai rezultat: raportul ocupa spatiul */}
                 {result ? (
                     <div className="report-wrapper">
                         <WebsiteReport data={result} />

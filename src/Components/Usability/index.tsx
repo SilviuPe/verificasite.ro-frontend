@@ -37,7 +37,7 @@ const Usability = ({ data }: { data: AnalyzeResponse }) => {
             info: "O pagină 404 personalizată elimină confuzia utilizatorului atunci când întâmpină o eroare la accesarea site-ului. În funcție de cauză, URL greșit, pagina este temporar indisponibilă pentru update sau pagina nu mai există, o pagină 404 personalizată poate fi folosită cu scopul de a redirecționa utilizatorii."
         },
         {
-            row_type: data.screenshots.mobile && data.screenshots.desktop ? 'success' : !data.screenshots.mobile && !data.screenshots.desktop ? 'error' : 'warning',
+            row_type: data.social?.language?.detected ? 'success' : 'error',
             key_: 'Limba',
             value: <div style={{textAlign: 'start', display: "flex"}}>
                 {
