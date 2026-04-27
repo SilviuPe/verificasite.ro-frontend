@@ -131,6 +131,9 @@ export type AnalyzeResponse = {
     }
 };
 
+export interface defaultDataPropsI {
+    data : AnalyzeResponse | null;
+}
 
 export type LoginResponse = {
     access_token: string;

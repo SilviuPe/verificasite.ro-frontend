@@ -1,0 +1,46 @@
+.website-congratulation-box .header {
+
+}
+.website-congratulation-box .header {
+    display: flex;
+    flex-direction: row;
+}
+.website-congratulation-box .header .website-log {
+    gap: var(--spacing-sm);
+}
+
+.website-congratulation-box .header .website-log h2 {
+    font-size: 1.25em;
+    color: var(--input-text-color);
+}
+
+.website-congratulation-box .header .website-log p {
+    font-size: 1em;
+    color: var(--faded-green-color);
+}
+
+.website-congratulation-box .message-box a {
+    color: var(--success-title-color);
+}
+
+.website-congratulation-box .message-box {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-sm);
+    align-items: start;
+    padding: var(--spacing-sm);
+    background-color: var(--white-green-color);
+
+    border: 0;
+    border-radius: var(--spacing-sm);
+}
+
+.website-congratulation-box .message-box .message-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.website-congratulation-box .message-box .message-content p {
+    font-size: 1em;
+}

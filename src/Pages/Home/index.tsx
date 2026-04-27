@@ -1,26 +1,26 @@
-import { useEffect, useRef, useState } from "react";
-import type { homePropsI } from "./types";
-import searchIcon from "../../assets/search-icon.svg";
+import {useEffect, useRef, useState} from 'react';
+import {CustomBox, AuditResult} from '../../Components';
 import "../../Styles/home.css";
-import { WebsiteReport, Footer } from "../../Components";
-import { analyzeWebsite } from "../../api";
-import type { AnalyzeResponse } from "../../api";
+import type {homePropsI} from './types.ts';
+import Logo from "../../assets/Logo.svg";
+import GlobeIcon from "../../assets/GlobeIcon.svg";
+import {analyzeWebsite} from '../../api.ts';
+import type { AnalyzeResponse} from "../../api.ts";
+import "../../Styles/header.css";
 
 const Home = (props: homePropsI) => {
-    const { title } = props;
-
-    const [url, setUrl] = useState("");
-    const [agreed, setAgreed] = useState(false);
-
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [result, setResult] = useState<AnalyzeResponse | null>(null);
-
-    const abortRef = useRef<AbortController | null>(null);
+    const {title} = props;
 
     useEffect(() => {
         document.title = title || "Home";
     }, [title]);
+
+    const [url, setUrl] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [result, setResult] = useState<AnalyzeResponse | null>(null);
+    console.log(error, result);
+    const abortRef = useRef<AbortController | null>(null);
 
     useEffect(() => {
         return () => {
@@ -28,14 +28,10 @@ const Home = (props: homePropsI) => {
         };
     }, []);
 
+
     const onStart = async () => {
         setError(null);
         setResult(null);
-
-        if (!agreed) {
-            setError("Trebuie sa fii de acord cu Termeni si conditiile.");
-            return;
-        }
 
         const trimmed = url.trim();
         if (!trimmed) {
@@ -61,98 +57,24 @@ const Home = (props: homePropsI) => {
         }
     };
 
-    const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
-        if (e.key === "Enter") onStart();
-    };
 
-    return (
-        <div className="page-container">
-            <script src={'./test.js'}></script>
-            <div className="page-content">
-                <div className="logo-container">
-                    <img
-                        alt="logo"
-                        src="/full_logo.svg"
-                        width="300"
-                        height="120"
-                        fetchPriority="high"
-                        loading="eager"
-                        decoding="async"
-                    />
+    return (<>
+        <CustomBox content={
+            <div className="header-component">
+                <div style={{color:"black"}}>
+                    <img src={Logo} width="150px" alt="logo"/>
                 </div>
-
-                <div className="title-container">
-                    <h1>DIAGNOSTIC WEBSITE</h1>
+                <div className="input-container">
+                    <div className="input-wrapper">
+                        <img src={GlobeIcon} alt="globe" className="icon" />
+                        <input type="text" className="input" onChange={(e) => setUrl(e.target.value)} value={url} />
+                    </div>
+                    <button onClick={onStart} disabled={loading}>Analizează acum!</button>
                 </div>
-
-                <div className="tool-container">
-                    <div className="input-container">
-                        <input
-                            type="text"
-                            placeholder="introdu link-ul website-ului tau"
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
-                            onKeyDown={onKeyDown}
-                            disabled={loading}
-                        />
-
-                        <button onClick={onStart} disabled={loading}>
-                            {loading ? (
-                                <div style={{display:'flex', alignItems:"items-center", justifyContent: "center",  gap: 10}}>
-                                    <style>{`
-                                          @keyframes spin {
-                                            from {
-                                              transform: rotate(0deg);
-                                            }
-                                            to {
-                                              transform: rotate(360deg);
-                                            }
-                                          }
-                                          
-                                          .spinner-white {
-                                            width: 20px;
-                                            height: 20px;
-                                            border: 3px solid white;
-                                            border-top: 3px solid transparent;
-                                            border-radius: 50%;
-                                            animation: spin 0.8s linear infinite;
-                                          }
-                                    `}</style>
-                                    <span>SE ANALIZEAZĂ...</span>
-                                    <div className="spinner-white"></div>
-                                </div>
-                            ) : (
-                                "START DIAGNOSTIC"
-                            )}
-                            {loading ? null : <img alt="search icon" src={searchIcon} />}
-                        </button>
-                    </div>
-
-                    <div className="agreement-input-container">
-                        <input
-                            type="checkbox"
-                            checked={agreed}
-                            onChange={(e) => setAgreed(e.target.checked)}
-                            disabled={loading}
-                        />
-                        <a href="/termeni-si-conditii">Sunt de acord cu Termeni si conditiile</a>
-                    </div>
-
-                    {error && <div className="feedback error">{error}</div>}
-                </div>
-                {result ? (
-                    <div className="report-wrapper">
-                        <WebsiteReport data={result} />
-                    </div>
-                ) : (
-                    <div className="page-spacer" />
-                )}
             </div>
-
-            {/* Footer afara din page-content ca sa stea jos natural */}
-            <Footer />
-        </div>
-    );
+        }/>
+        <AuditResult data={result}/>
+    </>);
 };
 
 export { Home };

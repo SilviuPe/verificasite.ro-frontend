@@ -242,15 +242,15 @@ const AuditTable = () => {
             <div className="audits-table-container">
                 <table className="audits-table-content">
                     <thead>
-                        <tr>
-                            <th onClick={() => handleSort("id")} className={sortKey === "id" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>ID</th>
-                            <th onClick={() => handleSort("ip")} className={sortKey === "ip" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>IP Address</th>
-                            <th onClick={() => handleSort("url")} className={sortKey === "url" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>URL</th>
-                            <th onClick={() => handleSort("html")} className={sortKey === "html" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>HTML</th>
-                            <th onClick={() => handleSort("scor")} className={sortKey === "scor" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>Scor</th>
-                            <th onClick={() => handleSort("device")} className={sortKey === "device" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>Device</th>
-                            <th onClick={() => handleSort("date")} className={sortKey === "date" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>Date</th>
-                        </tr>
+                    <tr>
+                        <th onClick={() => handleSort("id")} className={sortKey === "id" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>ID</th>
+                        <th onClick={() => handleSort("ip")} className={sortKey === "ip" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>IP Address</th>
+                        <th onClick={() => handleSort("url")} className={sortKey === "url" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>URL</th>
+                        <th onClick={() => handleSort("html")} className={sortKey === "html" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>HTML</th>
+                        <th onClick={() => handleSort("scor")} className={sortKey === "scor" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>Scor</th>
+                        <th onClick={() => handleSort("device")} className={sortKey === "device" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>Device</th>
+                        <th onClick={() => handleSort("date")} className={sortKey === "date" ? sortDirection === "asc" ? "sorted-asc" : "sorted-desc" : ""}>Date</th>
+                    </tr>
                     </thead>
                     <tbody>
                     {

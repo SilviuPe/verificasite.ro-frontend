@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import {Home, TermsAndConditions, Admin} from "./Pages";
-
+import "./index.css";
 function App() {
     return (
         <Routes>

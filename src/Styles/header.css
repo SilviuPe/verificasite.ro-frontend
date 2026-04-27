@@ -1,0 +1,51 @@
+.header-component {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.input-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.icon {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+}
+
+.input-wrapper .input {
+    padding-left: 2rem; /* faci loc pentru icon */
+}
+
+.input-container input {
+    background-color: var(--input-bg-color);
+    border: 1px solid #E3E3E3;
+    border-radius: calc(var(--spacing-sm) / 4);
+    outline: none;
+    color: var(--input-text-color);
+    font-weight: bold;
+    padding: calc(var(--spacing-sm)/2);
+    width: 400px;
+}
+
+.input-container button {
+    background: var(--success-title-color);
+    color: var(--normal-text-color);
+    padding: calc(var(--spacing-sm)/2);
+    border: 0;
+    border-radius: calc(var(--spacing-sm) / 4);
+}
