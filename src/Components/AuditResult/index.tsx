@@ -3,7 +3,8 @@ import type {defaultDataPropsI} from "../../api.ts";
 import {CustomBox} from "../CustomBox";
 import {WebsiteCongratulationBox} from '../WebsiteCongratulationBox';
 import {GeneralScore} from "../GeneralScore";
-
+import {Optimizations} from "../Optimizations";
+import {StructuredData} from "../StructuredData";
 const AuditResult = (props: defaultDataPropsI) => {
 
     const {data} = props;
@@ -16,8 +17,8 @@ const AuditResult = (props: defaultDataPropsI) => {
                     <CustomBox content={<GeneralScore data={data}/>}/>
                 </div>
                 <div className="audit-result-vertical-container right">
-                    <CustomBox content={<>test</>}/>
-                    <CustomBox content={<>test</>}/>
+                    <CustomBox content={<Optimizations data={data}/>}/>
+                    <CustomBox content={<StructuredData data={data}/>}/>
                 </div>
             </div>
         </div>

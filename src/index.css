@@ -13,6 +13,15 @@
   --white-green-color: #F2FBE6;
   --faded-green-color: #729E91;
   --background-color: #F2FBE6;
+  --green-fade-color: #E3F4BE;
+  --orange-accent-color: #F58300;
+  --orange-fade-color: #F4E1BE;
+  --red-accent-color: #E90808;
+  --red-fade-color: #F4BEBE;
+
+  --white-fade-color: #A1A1A1;
+
+  --border-box-color: #EDEDED;
 }
 body, input, button, textarea {
   font-family: 'Inter', sans-serif;
@@ -25,5 +34,5 @@ body {
 }
 
 #root {
-  padding: var(--spacing-sm);
+  padding: var(--spacing-md);
 }

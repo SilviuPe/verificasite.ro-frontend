@@ -41,10 +41,15 @@ export type AnalyzeResponse = {
             };
         };
         www_resolve?: Record<string, unknown>;
-        robots_txt?: Record<string, unknown>;
+        robots_txt?: {
+            present: boolean;
+            status_code: number;
+            sitemap_lines: string[];
+            url: string;
+        };
         sitemap?: {
             present?: boolean | null;
-            url?: string | null;
+            url?: string | undefined;
             status_code?: number | null;
         }
         mobile?: Record<string, unknown>;

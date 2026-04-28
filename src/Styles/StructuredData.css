@@ -1,0 +1,44 @@
+.structured-data-component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.structured-data-box-container p {
+    margin: 0;
+}
+.structured-data-component .structured-data-row-container {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-sm);
+}
+
+.structured-data-component .header-title h2 {
+    color: var(--input-text-color);
+    font-size: 1.875em;
+}
+
+.structured-data-component .structured-data-row-container .structured-data-box-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    border-radius: var(--spacing-sm);
+    border: 1px solid var(--border-box-color);
+    padding: var(--spacing-sm);
+}
+
+.structured-data-box-container .box-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.structured-data-box-container .box-title .info-button {
+    cursor: pointer;
+    width: 18px;
+}
+
+.structured-data-box-container .box-title p {
+    margin: 0;
+    font-weight: bold;
+}

@@ -14,7 +14,11 @@ const GeneralScore = (props: defaultDataPropsI) => {
                 <img src={DiagnosticIcon} alt="Diagnostic icon" width={72}/>
                 <h2>Diagnostic</h2>
             </div>
-            <div className="score-overall-wrapper"></div>
+            <div className="score-overall-wrapper">
+                <div className="score-value">68</div>
+                <div className="subtitle">Your general score</div>
+                <div className="last-update">Updated Nov 24, 2022</div>
+            </div>
             <div className="score-splitted-wrapper">
                 <ScoreBar title={"Implementat"} type={'green'} value={76}/>
                 <ScoreBar title={"De îmbunătățit"} type={'orange'} value={48}/>

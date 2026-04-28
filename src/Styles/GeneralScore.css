@@ -1,7 +1,7 @@
 .general-score-component {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: calc(var(--spacing-md) * 1.860);
 }
 
 .general-score-component .header-wrapper {
@@ -15,10 +15,35 @@
     font-size: 1.875em;
 }
 
+.general-score-component .score-overall-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: calc(var(--spacing-sm)/2);
+}
+
+.general-score-component .score-overall-wrapper .score-value {
+    color: var(--orange-accent-color);
+    font-size: 8em;
+    font-weight: 900;
+}
+
+.general-score-component .score-overall-wrapper .subtitle {
+    color: var(--orange-accent-color);
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.general-score-component .score-overall-wrapper .last-update {
+    color: var(--white-fade-color);
+    font-size: 1em;
+}
+
 .general-score-component .score-splitted-wrapper {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
 }
 
 .general-score-component .cta-button-wrapper {

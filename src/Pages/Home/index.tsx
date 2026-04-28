@@ -17,9 +17,8 @@ const Home = (props: homePropsI) => {
 
     const [url, setUrl] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
+    // const [error, setError] = useState<string | null>(null);
     const [result, setResult] = useState<AnalyzeResponse | null>(null);
-    console.log(error, result);
     const abortRef = useRef<AbortController | null>(null);
 
     useEffect(() => {
@@ -30,12 +29,12 @@ const Home = (props: homePropsI) => {
 
 
     const onStart = async () => {
-        setError(null);
+        // setError(null);
         setResult(null);
 
         const trimmed = url.trim();
         if (!trimmed) {
-            setError("Introdu link-ul website-ului tau.");
+            // setError("Introdu link-ul website-ului tau.");
             return;
         }
 
@@ -48,10 +47,10 @@ const Home = (props: homePropsI) => {
         try {
             const data = await analyzeWebsite(trimmed, controller.signal);
             setResult(data);
-            setError(null);
+            // setError(null);
         } catch (e: any) {
             if (e?.name === "AbortError") return;
-            setError(e?.message || "A aparut o eroare la analizare.");
+            // setError(e?.message || "A aparut o eroare la analizare.");
         } finally {
             setLoading(false);
         }
