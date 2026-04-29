@@ -25,7 +25,9 @@ const GeneralScore = (props: defaultDataPropsI) => {
                 <ScoreBar title={"Erori"} type={'red'} value={24}/>
             </div>
             <div className="cta-button-wrapper">
-                <button>Scapă acum de erorile din site <img src={ArrowRightIcon} alt="arrow-right-icon"/></button>
+                <button onClick={() => {
+                    window.open("https://www.head-innovation.com")
+                }}>Scapă acum de erorile din site <img src={ArrowRightIcon} alt="arrow-right-icon"/></button>
             </div>
         </div>
     )

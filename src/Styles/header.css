@@ -65,14 +65,14 @@
 
 @media (max-width: 768px) {
 
-    /* header devine vertical */
     .header-component {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: var(--spacing-sm);
     }
-
-    /* input + button nu mai stau pe un rând forțat */
+    .input-container .url-input {
+        width: 100%;
+    }
     .input-container {
         width: 100%;
         flex-direction: column;
@@ -80,18 +80,17 @@
         gap: var(--spacing-sm);
     }
 
-    /* wrapper să ocupe tot */
     .input-wrapper {
         width: 100%;
     }
 
-    /* input devine responsive (NU mai e fix 400px) */
-    .input-container input {
+    .input-container button {
         width: 100%;
     }
 
-    /* buton full width (mult mai ok pe mobile) */
-    .input-container button {
-        width: 100%;
+    .agreement-input-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }
 }
