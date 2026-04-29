@@ -1,0 +1,46 @@
+.info-tooltip-wrapper {
+    position: relative;
+    display: inline-flex;
+}
+
+.info-tooltip-popup {
+    position: absolute;
+    top: 160%;
+    right: 0;
+    width: 460px;
+
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+
+    font-size: 13px;
+    color: #333;
+    z-index: 1000;
+}
+
+@media (max-width: 1260px) {
+    .info-tooltip-popup {
+        width: 360px;
+    }
+}
+
+@media (max-width: 768px) {
+    .info-tooltip-popup {
+        width: 460px;
+    }
+}
+
+@media (max-width: 568px) {
+    .info-tooltip-popup {
+        width: 360px;
+    }
+}
+
+@media (max-width: 416px) {
+    .info-tooltip-popup {
+        width: 326px;
+        right: -30px;
+    }
+}

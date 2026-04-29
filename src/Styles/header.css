@@ -10,6 +10,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: var(--spacing-sm);
 }
 
 
@@ -26,12 +27,23 @@
     width: 16px;
     height: 16px;
 }
-
-.input-wrapper .input {
-    padding-left: 2rem; /* faci loc pentru icon */
+.agreement-input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
-
-.input-container input {
+.agreement-input-container a {
+    text-decoration: none;
+    font-size: 0.875em;
+    color: var(--input-text-color)
+}
+.agreement-input-container .not-agreed {
+    color: var(--red-accent-color);
+}
+.agreement-input-container input {
+    cursor: pointer;
+}
+.input-container .url-input {
     background-color: var(--input-bg-color);
     border: 1px solid #E3E3E3;
     border-radius: calc(var(--spacing-sm) / 4);
@@ -40,6 +52,7 @@
     font-weight: bold;
     padding: calc(var(--spacing-sm)/2);
     width: 400px;
+    padding-left: 2rem;
 }
 
 .input-container button {
@@ -48,4 +61,37 @@
     padding: calc(var(--spacing-sm)/2);
     border: 0;
     border-radius: calc(var(--spacing-sm) / 4);
+}
+
+@media (max-width: 768px) {
+
+    /* header devine vertical */
+    .header-component {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    /* input + button nu mai stau pe un rând forțat */
+    .input-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-sm);
+    }
+
+    /* wrapper să ocupe tot */
+    .input-wrapper {
+        width: 100%;
+    }
+
+    /* input devine responsive (NU mai e fix 400px) */
+    .input-container input {
+        width: 100%;
+    }
+
+    /* buton full width (mult mai ok pe mobile) */
+    .input-container button {
+        width: 100%;
+    }
 }

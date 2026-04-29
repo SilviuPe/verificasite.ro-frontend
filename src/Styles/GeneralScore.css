@@ -67,3 +67,39 @@
     cursor: pointer;
     gap: var(--spacing-sm);
 }
+
+@media (max-width: 768px) {
+
+    /* header stack */
+    .general-score-component .header-wrapper {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    /* titlu mai mic */
+    .general-score-component .header-wrapper h2 {
+        font-size: 1.4em;
+    }
+
+    /* scorul mare (FOARTE important) */
+    .general-score-component .score-overall-wrapper .score-value {
+        font-size: 4em; /* de la 8em → mult mai ok pe mobile */
+    }
+
+    /* subtitluri mai compacte */
+    .general-score-component .score-overall-wrapper .subtitle,
+    .general-score-component .score-overall-wrapper .last-update {
+        font-size: 0.9em;
+        text-align: center;
+    }
+
+    /* spacing mai mic */
+    .general-score-component {
+        gap: var(--spacing-md);
+    }
+
+    /* butonul deja e ok (full width), doar îl facem mai ușor de apăsat */
+    .general-score-component .cta-button-wrapper button {
+        padding: var(--spacing-sm);
+    }
+}

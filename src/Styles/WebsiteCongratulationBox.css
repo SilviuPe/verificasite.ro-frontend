@@ -44,3 +44,35 @@
 .website-congratulation-box .message-box .message-content p {
     font-size: 1em;
 }
+
+@media (max-width: 768px) {
+    .website-congratulation-box {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .website-congratulation-box .header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .website-congratulation-box .header .website-log {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .website-congratulation-box .message-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .website-congratulation-box .message-box .message-content {
+        width: 100%;
+    }
+
+    .website-congratulation-box h2,
+    .website-congratulation-box p,
+    .website-congratulation-box a {
+        overflow-wrap: anywhere;
+    }
+}

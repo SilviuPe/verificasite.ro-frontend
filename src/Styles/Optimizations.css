@@ -3,6 +3,14 @@
     flex-direction: column;
     gap: var(--spacing-sm);
 }
+
+.optimization-box-container.page-title, .optimization-box-container.description-page {
+    width: 25%;
+}
+.optimization-box-container.headings {
+    width: 50%;
+}
+
 .optimization-box-container p {
     margin: 0;
 }
@@ -10,6 +18,7 @@
     display: flex;
     flex-direction: row;
     gap: var(--spacing-sm);
+    width: 100%;
 }
 
 .optimizations-component .header-title h2 {
@@ -76,4 +85,73 @@
 }
 .clamp-text a {
     color: var(--input-text-color);
+}
+
+@media (max-width: 768px) {
+
+    /* rândurile devin coloană */
+    .optimizations-component .optimization-row-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .optimization-row-container.header-title {
+        flex-direction: row;
+        align-items: start;
+    }
+    /* box-urile ocupă full width */
+    .optimizations-component .optimization-row-container .optimization-box-container {
+        width: 100%;
+    }
+
+    .optimization-box-container.page-title, .optimization-box-container.description-page {
+        width: 100%;
+    }
+
+    .optimization-box-container {
+        width: 100%;
+    }
+
+    /* header list (probabil KPI-uri) -> stack */
+    .optimization-box-container .headers-list {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+        width: 100%;
+    }
+
+    /* item-urile nu mai sunt centrate (arată mai natural pe mobile) */
+    .optimization-box-container .headers-list .header-item {
+        align-items: flex-start;
+    }
+
+    /* list container să nu forțeze layout-ul pe orizontală */
+    .optimization-box-container .list-container {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    /* text/link-uri lungi */
+    .optimization-box-container li,
+    .optimization-box-container a,
+    .optimization-box-container p {
+        overflow-wrap: anywhere;
+    }
+
+    /* titlu mai mic pe mobile */
+    .optimizations-component .header-title h2 {
+        font-size: 1.4em;
+    }
+    .optimization-box-container .headers-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, auto);
+        gap: var(--spacing-sm);
+        width: 100%;
+    }
+    .optimization-box-container .headers-list .header-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

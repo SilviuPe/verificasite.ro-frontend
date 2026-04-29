@@ -14,10 +14,11 @@ const Home = (props: homePropsI) => {
     useEffect(() => {
         document.title = title || "Home";
     }, [title]);
-
+    const [agreed, setAgreed] = useState<boolean | null>(null);
+    const [urlError, setUrlError] = useState<boolean | null>(null);
+    const [agreedError, setAgreedError] = useState<boolean | null>(false);
     const [url, setUrl] = useState("");
     const [loading, setLoading] = useState(false);
-    // const [error, setError] = useState<string | null>(null);
     const [result, setResult] = useState<AnalyzeResponse | null>(null);
     const abortRef = useRef<AbortController | null>(null);
 
@@ -29,16 +30,19 @@ const Home = (props: homePropsI) => {
 
 
     const onStart = async () => {
-        // setError(null);
         setResult(null);
 
         const trimmed = url.trim();
-        if (!trimmed) {
-            // setError("Introdu link-ul website-ului tau.");
+
+        if (!agreed) {
+            setAgreedError(true);
             return;
         }
 
-        // opreste requestul anterior daca exista
+        if (!trimmed) {
+            return;
+        }
+
         abortRef.current?.abort();
         const controller = new AbortController();
         abortRef.current = controller;
@@ -47,17 +51,16 @@ const Home = (props: homePropsI) => {
         try {
             const data = await analyzeWebsite(trimmed, controller.signal);
             setResult(data);
-            // setError(null);
         } catch (e: any) {
             if (e?.name === "AbortError") return;
-            // setError(e?.message || "A aparut o eroare la analizare.");
+            setUrlError(true);
         } finally {
             setLoading(false);
         }
     };
 
 
-    return (<>
+    return (<div style={{display: "flex", flexDirection: "column", gap: "var(--spacing-sm)"}}>
         <CustomBox content={
             <div className="header-component">
                 <div style={{color:"black"}}>
@@ -66,14 +69,31 @@ const Home = (props: homePropsI) => {
                 <div className="input-container">
                     <div className="input-wrapper">
                         <img src={GlobeIcon} alt="globe" className="icon" />
-                        <input type="text" className="input" onChange={(e) => setUrl(e.target.value)} value={url} />
+                        <input type="text" style={{color: urlError === true ? "var(--red-accent-color)" : "var(--input-text-color)"}} className="url-input" onChange={(e) => {
+                            setUrl(e.target.value);
+                            setUrlError(false);
+                        }} value={url} />
+                    </div>
+                    <div className="agreement-input-container">
+                        <input
+                            type="checkbox"
+                            checked={agreed === true}
+                            onChange={(e) => {
+                                setAgreed(e.target.checked)
+                                setAgreedError(false);
+                            }}
+                            disabled={loading}
+                        />
+                        <a href="/termeni-si-conditii" style={{color: agreedError ? "var(--red-accent-color)" : ""}}>Sunt de acord cu Termeni si conditiile</a>
                     </div>
                     <button onClick={onStart} disabled={loading}>Analizează acum!</button>
                 </div>
             </div>
         }/>
-        <AuditResult data={result}/>
-    </>);
+        {
+            result ? <AuditResult data={result}/> : <div style={{backgroundColor: "var(--box-color)", width: "100%", height: "70vh", borderRadius: "var(--spacing-sm)"}}></div>
+        }
+    </div>);
 };
 
 export { Home };

@@ -22,7 +22,15 @@
   --white-fade-color: #A1A1A1;
 
   --border-box-color: #EDEDED;
+  --border-box-gray-color: #DFDFDF;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body, input, button, textarea {
   font-family: 'Inter', sans-serif;
 }

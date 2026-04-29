@@ -1,24 +1,27 @@
-.structured-data-component {
+.usability-component {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
 }
 
-.structured-data-box-container p {
+.usability-box-container p {
     margin: 0;
 }
-.structured-data-component .structured-data-row-container {
+.usability-component .usability-row-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: var(--spacing-sm);
 }
-
-.structured-data-component .header-title h2 {
+.usability-component .usability-row-container.header-title {
+    display: flex;
+    flex-direction: row;
+}
+.usability-component .header-title h2 {
     color: var(--input-text-color);
     font-size: 1.875em;
 }
 
-.structured-data-component .structured-data-row-container .structured-data-box-container {
+.usability-component .usability-row-container .usability-box-container {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
@@ -27,52 +30,53 @@
     padding: var(--spacing-sm);
 }
 
-.structured-data-box-container .box-title {
+.usability-box-container .box-title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.structured-data-box-container .box-title .info-button {
+.usability-box-container .box-title .info-button {
     cursor: pointer;
     width: 18px;
 }
 
-.structured-data-box-container .box-title p {
+.usability-box-container .box-title p {
     margin: 0;
     font-weight: bold;
 }
 
+
 @media (max-width: 768px) {
 
     /* rândurile devin coloană */
-    .structured-data-component .structured-data-row-container {
+    .usability-component .usability-row-container {
         flex-direction: column;
     }
-    .structured-data-row-container.header-title {
+    .usability-row-container.header-title {
         flex-direction: row;
         align-items: start;
     }
     /* box-urile ocupă full width */
-    .structured-data-component .structured-data-row-container .structured-data-box-container {
+    .usability-component .usability-row-container .usability-box-container {
         width: 100%;
     }
 
     /* title + icon să nu se înghesuie */
-    .structured-data-box-container .box-title {
+    .usability-box-container .box-title {
         flex-direction: row;
         align-items: flex-start;
         gap: var(--spacing-sm);
     }
 
     /* text mai mic pe mobile */
-    .structured-data-component .header-title h2 {
+    .usability-component .header-title h2 {
         font-size: 1.4em;
     }
 
     /* prevenim overflow */
-    .structured-data-box-container p,
-    .structured-data-box-container a {
+    .usability-box-container p,
+    .usability-box-container a {
         overflow-wrap: anywhere;
     }
 }

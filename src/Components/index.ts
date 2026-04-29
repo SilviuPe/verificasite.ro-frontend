@@ -5,3 +5,4 @@ export * from './WebsiteCongratulationBox';
 export * from './GeneralScore';
 export * from './Optimizations';
 export * from './StructuredData';
+export * from './PopupInfo';
