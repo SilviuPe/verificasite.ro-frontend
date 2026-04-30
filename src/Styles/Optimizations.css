@@ -87,7 +87,7 @@
     color: var(--input-text-color);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
 
     /* rândurile devin coloană */
     .optimizations-component .optimization-row-container {

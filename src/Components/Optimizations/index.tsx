@@ -1,6 +1,6 @@
 import type {ReactNode} from "react";
 import type {defaultDataPropsI} from "../../api.ts";
-import DiagnosticIcon from '../../assets/DiagnosticIcon.svg';
+import OptimizationIcon from '../../assets/OptimizationIcon.svg';
 
 import "../../Styles/Optimizations.css";
 import SuccesIcon from '../../assets/SuccesIcon.svg';
@@ -16,7 +16,7 @@ const Optimizations = (props: defaultDataPropsI) => {
     return (
         <div className="optimizations-component">
             <div className="optimization-row-container header-title">
-                <img src={DiagnosticIcon} alt=""/>
+                <img src={OptimizationIcon} alt=""/>
                 <h2>Optimizări</h2>
             </div>
             <div className="optimization-row-container">
@@ -91,7 +91,7 @@ const Optimizations = (props: defaultDataPropsI) => {
                 </div>
             </div>
             <div className="optimization-row-container">
-                <div className="optimization-box-container" style={{flex: 1}}>
+                <div className="optimization-box-container" style={{width: "100%"}}>
                     <img src={data?.seo?.title && data?.seo.meta_description ? SuccesIcon : ErrorIcon} alt={'icon'} width={22}/>
                     <div className="box-title">
                         <p style={{color: data?.seo?.title && data?.seo.meta_description ? "var(--success-title-color)" : "var(--red-accent-color)"}}>Previzualizare rezultat in Google</p>
@@ -103,7 +103,7 @@ const Optimizations = (props: defaultDataPropsI) => {
                         <p style={{margin: 5, color: "var(--input-text-color)", opacity: 0.5}}>{data?.seo.meta_description?.value}</p>
                     </div>
                 </div>
-                <div className="optimization-box-container" style={{flex: 1}}>
+                <div className="optimization-box-container" style={{width: "100%"}}>
                     <img src={data?.seo?.links ? data?.seo?.links?.broken_links?.broken && data.seo.links.broken_links.broken > 0 ? WarningIcon : SuccesIcon : ErrorIcon} alt={'icon'} width={22}/>
                     <div className="box-title">
                         <p style={{color: data?.seo?.links ? data?.seo?.links?.broken_links?.broken && data.seo.links.broken_links.broken > 0 ? "var(--orange-accent-color)" : "var(--success-title-color)" : "var(--red-accent-color)"}}>Link-uri Nefuncționale</p>
@@ -111,25 +111,33 @@ const Optimizations = (props: defaultDataPropsI) => {
                     </div>
                     <div className="links-list-container">
                         <p style={{color: "var(--input-text-color)"}} className="subtitle">{data?.seo?.links?.broken_links?.broken && data.seo.links.broken_links.broken > 0 ? `Am gasit ${data.seo.links.broken_links.broken} link-uri nefuncționale` : "Toate link-urile sunt functionale"}</p>
-                        <div className="list-container">
-                            <ul style={{display: "flex", flexDirection: 'column' ,gap: "var(--spacing-sm)"}}>
-                                <li>
-                                    <span className="clamp-text">
-                                        <a href={data?.seo?.links?.broken_links?.broken_samples?.[0]?.url} target="_blank">{data?.seo?.links?.broken_links?.broken_samples?.[0]?.url}</a>
-                                    </span>
-                                </li>
-                                <li>
-                                    <span className="clamp-text">
-                                        <a href="https://head-innovation.com" target="_blank">Descopera mai multe</a>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
+                        {
+                            data?.seo?.links && data?.seo?.links?.broken_links?.broken && data.seo.links.broken_links.broken > 0
+                            ? <div className="list-container">
+                                <ul style={{display: "flex", flexDirection: 'column' ,gap: "var(--spacing-sm)"}}>
+                                    <li>
+                                        <span className="clamp-text">
+                                            <a href={data?.seo?.links?.broken_links?.broken_samples?.[0]?.url} target="_blank">{data?.seo?.links?.broken_links?.broken_samples?.[0]?.url}</a>
+                                        </span>
+                                    </li>
+                                    {
+                                        data.seo.links.broken_links.broken > 1
+                                        ? <li>
+                                                <span className="clamp-text">
+                                                    <a href={data?.seo?.links?.broken_links?.broken_samples?.[1]?.url} target="_blank">{data?.seo?.links?.broken_links?.broken_samples?.[0]?.url}</a>
+                                                </span>
+                                            </li>
+                                            : null
+                                    }
+                                </ul>
+                            </div>
+                                : null
+                        }
                     </div>
                 </div>
             </div>
             <div className="optimization-row-container">
-                <div className="optimization-box-container" style={{flex: 1}}>
+                <div className="optimization-box-container" style={{width: "100%"}}>
                     <img src={data?.seo?.www_resolve?.supported ? SuccesIcon : ErrorIcon} alt={'icon'} width={22}/>
                     <div className="box-title">
                         <p style={{color: data?.seo?.www_resolve?.supported ? "var(--success-title-color)" : "var(--red-accent-color)"}}>WWW Resolve</p>
@@ -139,7 +147,7 @@ const Optimizations = (props: defaultDataPropsI) => {
                         <p style={{color: "var(--input-text-color)"}}>{data?.seo?.www_resolve?.supported ? "Se face redirect la subdomeniul \"www\" cu succes." : "Nu se face redirect la subdomeniul \"www\"."}</p>
                     </div>
                 </div>
-                <div className="optimization-box-container" style={{flex: 1}}>
+                <div className="optimization-box-container" style={{width: "100%"}}>
                     <img src={data?.seo.robots_txt?.present ? SuccesIcon : ErrorIcon} alt={'icon'} width={22}/>
                     <div className="box-title">
                         <p style={{color: data?.seo.robots_txt?.present ? "var(--success-title-color)" : "var(--red-accent-color)"}}>Robots.txt</p>
@@ -150,7 +158,7 @@ const Optimizations = (props: defaultDataPropsI) => {
                         <a style={{color: "var(--input-text-color)"}} href={data?.seo?.robots_txt?.url ? data.seo.robots_txt.url : undefined} target="_blank"><b>{data?.seo?.robots_txt?.url ? (data.seo.robots_txt.url) as ReactNode : null}</b></a>
                     </div>
                 </div>
-                <div className="optimization-box-container" style={{flex: 1}}>
+                <div className="optimization-box-container" style={{width: "100%"}}>
                     <img src={data?.seo.sitemap?.present ? SuccesIcon : ErrorIcon} alt={'icon'} width={22}/>
                     <div className="box-title">
                         <p style={{color: data?.seo.sitemap?.present ? "var(--success-title-color)" : "var(--red-accent-color)"}}>Sitemap XML</p>

@@ -1,9 +1,8 @@
 .website-congratulation-box .header {
-
-}
-.website-congratulation-box .header {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 .website-congratulation-box .header .website-log {
     gap: var(--spacing-sm);
@@ -45,7 +44,7 @@
     font-size: 1em;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
     .website-congratulation-box {
         width: 100%;
         max-width: 100%;

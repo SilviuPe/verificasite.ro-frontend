@@ -1,0 +1,106 @@
+.tech-component {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.tech-component .tech-row-container {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-sm);
+    width: 100%;
+}
+
+.tech-component .tech-row-container .tech-box-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    border-radius: var(--spacing-sm);
+    border: 1px solid var(--border-box-color);
+    padding: var(--spacing-sm);
+}
+
+.tech-box-container .box-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tech-col-container .box-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tech-box-container .box-title .info-button {
+    cursor: pointer;
+    width: 18px;
+}
+
+.tech-box-container .box-title p, .tech-col-container .box-title p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.tech-component .tech-col-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-box-color);
+    border-radius: var(--spacing-sm);
+}
+
+.plugins-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-sm);
+}
+
+.plugins-list .plugin-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    border-radius: var(--spacing-sm);
+    border: 1px solid var(--border-box-color);
+    padding: var(--spacing-sm);
+}
+.plugins-list .plugin-item p {
+    margin: 0;
+}
+
+
+@media (max-width: 1300px) {
+
+    /* rândurile devin coloană */
+    .tech-component .tech-row-container {
+        flex-direction: column;
+    }
+    .tech-row-container.header-title {
+        flex-direction: row;
+        align-items: start;
+    }
+    /* box-urile ocupă full width */
+    .tech-component .tech-row-container .tech-box-container {
+        width: 100%;
+    }
+
+    /* title + icon să nu se înghesuie */
+    .tech-box-container .box-title {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: var(--spacing-sm);
+    }
+
+    /* text mai mic pe mobile */
+    .tech-component .header-title h2 {
+        font-size: 1.4em;
+    }
+
+    /* prevenim overflow */
+    .tech-box-container p,
+    .tech-box-container a {
+        overflow-wrap: anywhere;
+    }
+}

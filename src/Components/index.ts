@@ -6,3 +6,6 @@ export * from './GeneralScore';
 export * from './Optimizations';
 export * from './StructuredData';
 export * from './PopupInfo';
+export * from './Marketing';
+export * from './Footer';
+export * from './LeadPopup';

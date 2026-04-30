@@ -1,60 +1,46 @@
-import type {defaultDataPropsI} from "../../api.ts";
-
 import {CustomBox} from "../CustomBox";
-import {WebsiteCongratulationBox} from '../WebsiteCongratulationBox';
-import {GeneralScore} from "../GeneralScore";
-import {Optimizations} from "../Optimizations";
-import {StructuredData} from "../StructuredData";
-import {TestMobileAndBrowser} from "../TestMobileAndBrowser";
-import {Usability} from "../Usability";
-import {Technologies} from "../Technologies";
-import {SocialMedia} from '../SocialMedia';
-import {Marketing} from '../Marketing';
 
-const AuditResult = (props: defaultDataPropsI) => {
-
-    const {data} = props;
-
+const PulseLoading = () => {
     return (
         <div className="audit-result-component">
             <div className="audit-result-horizontal-container">
                 <div className="audit-result-vertical-section left">
-                    <CustomBox pulse={false} content={<WebsiteCongratulationBox data={data}/>}/>
-                    <CustomBox pulse={false} content={<GeneralScore data={data}/>}/>
+                    <CustomBox pulseDelay={0.5} pulse={true} content={<div style={{height: 200}}></div>}/>
+                    <CustomBox pulseDelay={1} pulse={true} content={<div style={{height: 500}}></div>}/>
                 </div>
                 <div className="audit-result-vertical-section right">
-                    <CustomBox pulse={false} content={<Optimizations data={data}/>}/>
-                    <CustomBox pulse={false} content={<StructuredData data={data}/>}/>
+                    <CustomBox pulseDelay={0.1} pulse={true} content={<div style={{height: 500}}></div>}/>
+                    <CustomBox pulseDelay={.875} pulse={true} content={<div style={{height: 200}}></div>}/>
                 </div>
             </div>
             <div className="audit-result-horizontal-container" style={{width: "100%"}}>
-                <div className="audit-result-vertical-container">
+                <div className="audit-result-vertical-container" style={{width: "100%"}}>
                     <div className="left" style={{display:"flex"}}>
-                        <CustomBox pulse={false} content={<TestMobileAndBrowser data={data}/>}/>
+                        <CustomBox pulseDelay={0.1} pulse={true} content={<div style={{height: 400}}></div>}/>
                     </div>
                     <div className="right" style={{display:"flex"}}>
-                        <CustomBox pulse={false} content={<Usability data={data}/>}/>
+                        <CustomBox pulseDelay={0.6} pulse={true} content={<div style={{height: 400}}></div>}/>
                     </div>
                 </div>
             </div>
             <div className="audit-result-horizontal-container" style={{width: "100%"}}>
                 <div className="audit-result-vertical-container" style={{width: "100%"}}>
                     <div style={{display:"flex", width:"100%"}}>
-                        <CustomBox pulse={false} content={<Technologies data={data}/>}/>
+                        <CustomBox pulseDelay={1.5} pulse={true} content={<div style={{height: 300}}></div>}/>
                     </div>
                 </div>
             </div>
             <div className="audit-result-horizontal-container" style={{width: "100%"}}>
                 <div className="audit-result-vertical-container" style={{width: "100%"}}>
                     <div style={{display:"flex", width:"100%"}}>
-                        <CustomBox pulse={false} content={<SocialMedia data={data}/>}/>
+                        <CustomBox pulseDelay={0.6} pulse={true} content={<div style={{height: 100}}></div>}/>
                     </div>
                 </div>
             </div>
             <div className="audit-result-horizontal-container" style={{width: "100%"}}>
                 <div className="audit-result-vertical-container" style={{width: "100%"}}>
                     <div style={{display:"flex", width:"100%"}}>
-                        <CustomBox pulse={false} content={<Marketing data={data}/>}/>
+                        <CustomBox pulseDelay={0.15} pulse={true} content={<div style={{height: 100}}></div>}/>
                     </div>
                 </div>
             </div>
@@ -62,4 +48,4 @@ const AuditResult = (props: defaultDataPropsI) => {
     )
 }
 
-export {AuditResult}
+export {PulseLoading};

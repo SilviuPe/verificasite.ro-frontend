@@ -1,5 +1,5 @@
 import type {defaultDataPropsI} from "../../api.ts";
-import DiagnosticIcon from "../../assets/DiagnosticIcon.svg";
+import MobileBrowserIcon from "../../assets/MobileBrowserIcon.svg";
 
 import "../../Styles/TestMobileAndBrowser.css";
 
@@ -10,7 +10,7 @@ const TestMobileAndBrowser = (props: defaultDataPropsI) => {
     return (
         <div className="text-mobile-and-browser-component">
             <div className="header-wrapper">
-                <img src={DiagnosticIcon} alt="Diagnostic icon" width={72}/>
+                <img src={MobileBrowserIcon} alt="Diagnostic icon" width={72}/>
                 <h2>Test Mobile & Browser</h2>
             </div>
             <div className="images-wrapper">

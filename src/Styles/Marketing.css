@@ -1,78 +1,79 @@
-.structured-data-component {
+.marketing-component {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
 }
 
-.structured-data-box-container p {
-    margin: 0;
-}
-.structured-data-component .structured-data-row-container {
+.marketing-component .marketing-row-container {
     display: flex;
     flex-direction: row;
     gap: var(--spacing-sm);
+    width: 100%;
 }
 
-.structured-data-component .header-title h2 {
-    color: var(--input-text-color);
-    font-size: 1.875em;
-}
-
-.structured-data-component .structured-data-row-container .structured-data-box-container {
+.marketing-component .marketing-row-container .marketing-box-container {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
     border-radius: var(--spacing-sm);
     border: 1px solid var(--border-box-color);
     padding: var(--spacing-sm);
+    width: 100%;
 }
 
-.structured-data-box-container .box-title {
+.marketing-box-container .box-title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.structured-data-box-container .box-title .info-button {
+.marketing-col-container .box-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.marketing-box-container .box-title .info-button {
     cursor: pointer;
     width: 18px;
 }
 
-.structured-data-box-container .box-title p {
+
+.marketing-box-container .box-title p {
     margin: 0;
     font-weight: bold;
+}
+
+.marketing-box-container p {
+    margin: 0;
 }
 
 @media (max-width: 1300px) {
 
     /* rândurile devin coloană */
-    .structured-data-component .structured-data-row-container {
+    .marketing-component .marketing-row-container {
         flex-direction: column;
     }
-    .structured-data-row-container.header-title {
+    .marketing-row-container.header-title {
         flex-direction: row;
         align-items: start;
     }
-    /* box-urile ocupă full width */
-    .structured-data-component .structured-data-row-container .structured-data-box-container {
-        width: 100%;
-    }
 
     /* title + icon să nu se înghesuie */
-    .structured-data-box-container .box-title {
+    .marketing-box-container .box-title {
         flex-direction: row;
         align-items: flex-start;
         gap: var(--spacing-sm);
     }
 
     /* text mai mic pe mobile */
-    .structured-data-component .header-title h2 {
+    .marketing-component .header-title h2 {
         font-size: 1.4em;
     }
 
     /* prevenim overflow */
-    .structured-data-box-container p,
-    .structured-data-box-container a {
+    .marketing-box-container p,
+    .marketing-box-container a {
         overflow-wrap: anywhere;
     }
 }

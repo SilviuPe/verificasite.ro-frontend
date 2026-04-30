@@ -14,6 +14,7 @@ export type WordPressPlugin = {
 
 export type AnalyzeResponse = {
     input_url: string;
+    favicon: string;
     normalized_candidates: string[];
     fetched_url: string;
     final_url: string;
@@ -21,6 +22,12 @@ export type AnalyzeResponse = {
     status_code: number;
     ip_address: string | null;
     ssl_ok: boolean;
+    score: {
+        general_score: number;
+        implemented_percent: number;
+        improvement_percent: number;
+        missing_or_errors_percent: number;
+    },
     screenshots: {
         desktop: string;
         mobile: string;
@@ -91,7 +98,9 @@ export type AnalyzeResponse = {
         }
     }
     tech?: {
-        google_ads?: boolean;
+        google_ads?: {
+            present: boolean,
+        };
         google_analytics?: boolean;
         google_tag_manager?: boolean;
         jquery?: boolean;
@@ -304,3 +313,36 @@ export async function exportAuditsPDFByIds(ids: number[]) {
     window.URL.revokeObjectURL(url);
 }
 
+
+export type CreateLeadPayload = {
+    website: string;
+    date: string;
+    company_name: string;
+};
+
+export async function createLead(payload: CreateLeadPayload) {
+    const res = await fetch(`${API_BASE}/leads`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+    });
+
+    if (!res.ok) {
+        let msg = `Request failed (${res.status})`;
+        try {
+            const data = await res.json();
+            if (data?.detail) {
+                msg = typeof data.detail === "string"
+                    ? data.detail
+                    : JSON.stringify(data.detail);
+            }
+        } catch {
+            console.log();
+        }
+        throw new Error(msg);
+    }
+
+    return await res.json();
+}

@@ -10,6 +10,25 @@
     width: 100%;
 }
 
+.custom-box-component.pulse {
+    animation-name: pulse-fade;
+    animation-duration: 1.6s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pulse-fade {
+    0% {
+        background-color: #fff;
+    }
+    50% {
+        background-color: var(--green-fade-color);
+    }
+    100% {
+        background-color: #fff;
+    }
+}
+
 .audit-result-component {
     display: flex;
     flex-direction: column;
@@ -51,7 +70,7 @@
     width: 25%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
     .audit-result-horizontal-container {
         flex-direction: column;
     }

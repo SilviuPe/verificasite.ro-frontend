@@ -1,5 +1,5 @@
 import type {defaultDataPropsI} from "../../api.ts";
-import DiagnosticIcon from "../../assets/DiagnosticIcon.svg";
+import StructuredDataIcon from "../../assets/StructuredDataIcon.svg";
 import SuccesIcon from "../../assets/SuccesIcon.svg";
 import ErrorIcon from "../../assets/ErrorIcon.svg";
 
@@ -12,11 +12,11 @@ const StructuredData = (props: defaultDataPropsI) => {
     return (
         <div className="structured-data-component">
             <div className="structured-data-row-container header-title">
-                <img src={DiagnosticIcon} alt=""/>
+                <img src={StructuredDataIcon} alt=""/>
                 <h2>Date structurate</h2>
             </div>
             <div className="structured-data-row-container">
-                <div className="structured-data-box-container" style={{flex: 1}}>
+                <div className="structured-data-box-container" style={{width: "100%"}}>
                     <img src={  data?.structured_data?.schema_org?.formats?.detected?.json_ld ||
                                 data?.structured_data?.schema_org?.formats?.detected?.rdfa ||
                                 data?.structured_data?.schema_org?.formats?.detected?.microdata ? SuccesIcon : ErrorIcon} alt={'icon'} width={22}/>
@@ -34,7 +34,7 @@ const StructuredData = (props: defaultDataPropsI) => {
                                         : null }` : "Schema.org nu a fost găsit."}</p>
                     </div>
                 </div>
-                <div className="structured-data-box-container" style={{flex: 1}}>
+                <div className="structured-data-box-container" style={{width: "100%"}}>
                     <img src={data?.social?.opengraph?.present ? SuccesIcon : ErrorIcon} alt={'icon'} width={22}/>
                     <div className="box-title">
                         <p style={{color: data?.social?.opengraph?.present ? "var(--success-title-color)" : "var(--red-accent-color)"}}>OpenGraph Protocol</p>

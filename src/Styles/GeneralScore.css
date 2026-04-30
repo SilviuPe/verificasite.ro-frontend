@@ -68,7 +68,7 @@
     gap: var(--spacing-sm);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1300px) {
 
     /* header stack */
     .general-score-component .header-wrapper {

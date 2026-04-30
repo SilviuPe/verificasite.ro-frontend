@@ -7,7 +7,25 @@ import "../../Styles/PopupInfo.css";
 const PopupInfo = (props: PopupInfoPropsI) => {
     const {title, text} = props;
     const [open, setOpen] = useState(false);
+    const [positionLeft, setPositionLeft] = useState(false);
+    const elRef = useRef(null);
     const wrapperRef = useRef<HTMLDivElement | null>(null);
+
+    useEffect(() => {
+        const el = elRef.current;
+        if (!el) return;
+
+        const rect = (el as HTMLElement).getBoundingClientRect();
+        const left = rect.left + window.scrollX;
+        const width = document.documentElement.scrollWidth;
+
+        const shouldBeLeft = left < (width / 2);
+
+        setPositionLeft(prev => {
+            if (prev === shouldBeLeft) return prev; // evită re-render inutil
+            return shouldBeLeft;
+        });
+    }, []);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -26,6 +44,7 @@ const PopupInfo = (props: PopupInfoPropsI) => {
     return (
         <div className="info-tooltip-wrapper" ref={wrapperRef}>
             <img
+                ref={elRef}
                 className="info-button"
                 src={InfoIcon}
                 alt="info"
@@ -33,7 +52,7 @@ const PopupInfo = (props: PopupInfoPropsI) => {
             />
 
             {open && (
-                <div className="info-tooltip-popup">
+                <div className="info-tooltip-popup" style={{right: positionLeft ? '-460px' : '0'}}>
                     <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                         <h2>INFO - {title}</h2>
                         <img src={CloseIcon} alt="close" width={20} style={{cursor: "pointer"}} onClick={()=> {

@@ -4,7 +4,7 @@ import "./index.css";
 function App() {
     return (
         <Routes>
-            <Route path="/" element={<Home title={'Verifica Site'}/>} />
+            <Route path="/" element={<Home title={'HEAD SCAN'}/>} />
             <Route path="termeni-si-conditii" element={<TermsAndConditions title="Termeni & Conditii"/>}/>
             <Route path="/admin" element={<Admin/>} />
         </Routes>

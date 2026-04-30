@@ -1,5 +1,5 @@
 import type {defaultDataPropsI} from "../../api.ts";
-import DiagnosticIcon from "../../assets/DiagnosticIcon.svg";
+import UsabilityIcon from "../../assets/UsabilityIcon.svg";
 import SuccesIcon from "../../assets/SuccesIcon.svg";
 import ErrorIcon from "../../assets/ErrorIcon.svg";
 import {PopupInfo} from "../PopupInfo";
@@ -12,7 +12,7 @@ const Usability = (props: defaultDataPropsI) => {
     return (
         <div className="usability-component">
             <div className="usability-row-container header-title">
-                <img src={DiagnosticIcon} alt=""/>
+                <img src={UsabilityIcon} alt=""/>
                 <h2>Usability</h2>
             </div>
             <div className="usability-row-container">
