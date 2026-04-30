@@ -39,7 +39,7 @@ export type AnalyzeResponse = {
         headings?: Record<string, number>;
         images?: { total: number; missing_alt: number };
         links?: {
-            broken_links?: {
+            broken_pages?: {
                 checked: number;
                 ok: number;
                 broken: number;

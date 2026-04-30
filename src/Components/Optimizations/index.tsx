@@ -104,27 +104,27 @@ const Optimizations = (props: defaultDataPropsI) => {
                     </div>
                 </div>
                 <div className="optimization-box-container" style={{width: "100%"}}>
-                    <img src={data?.seo?.links ? data?.seo?.links?.broken_links?.broken && data.seo.links.broken_links.broken > 0 ? WarningIcon : SuccesIcon : ErrorIcon} alt={'icon'} width={22}/>
+                    <img src={data?.seo?.links ? data?.seo?.links?.broken_pages?.broken && data.seo.links.broken_pages.broken > 0 ? WarningIcon : SuccesIcon : ErrorIcon} alt={'icon'} width={22}/>
                     <div className="box-title">
-                        <p style={{color: data?.seo?.links ? data?.seo?.links?.broken_links?.broken && data.seo.links.broken_links.broken > 0 ? "var(--orange-accent-color)" : "var(--success-title-color)" : "var(--red-accent-color)"}}>Link-uri Nefuncționale</p>
+                        <p style={{color: data?.seo?.links ? data?.seo?.links?.broken_pages?.broken && data.seo.links.broken_pages.broken > 0 ? "var(--orange-accent-color)" : "var(--success-title-color)" : "var(--red-accent-color)"}}>Link-uri Nefuncționale</p>
                         <PopupInfo title="Link-uri Nefuncționale" text="Orice link nefuncțional are un efect negativ asupra performanței site-ului. Asigurați-vă că orice link către o pagină internă sau externă site-ului funcționează perfect."/>
                     </div>
                     <div className="links-list-container">
-                        <p style={{color: "var(--input-text-color)"}} className="subtitle">{data?.seo?.links?.broken_links?.broken && data.seo.links.broken_links.broken > 0 ? `Am gasit ${data.seo.links.broken_links.broken} link-uri nefuncționale` : "Toate link-urile sunt functionale"}</p>
+                        <p style={{color: "var(--input-text-color)"}} className="subtitle">{data?.seo?.links?.broken_pages?.broken && data.seo.links.broken_pages.broken > 0 ? `Am gasit ${data.seo.links.broken_pages.broken} link-uri nefuncționale` : "Toate link-urile sunt functionale"}</p>
                         {
-                            data?.seo?.links && data?.seo?.links?.broken_links?.broken && data.seo.links.broken_links.broken > 0
+                            data?.seo?.links && data?.seo?.links?.broken_pages?.broken && data.seo.links.broken_pages.broken > 0
                             ? <div className="list-container">
                                 <ul style={{display: "flex", flexDirection: 'column' ,gap: "var(--spacing-sm)"}}>
                                     <li>
                                         <span className="clamp-text">
-                                            <a href={data?.seo?.links?.broken_links?.broken_samples?.[0]?.url} target="_blank">{data?.seo?.links?.broken_links?.broken_samples?.[0]?.url}</a>
+                                            <a href={data?.seo?.links?.broken_pages?.broken_samples?.[0]?.url} target="_blank">{data?.seo?.links?.broken_pages?.broken_samples?.[0]?.url}</a>
                                         </span>
                                     </li>
                                     {
-                                        data.seo.links.broken_links.broken > 1
+                                        data.seo.links.broken_pages.broken > 1
                                         ? <li>
                                                 <span className="clamp-text">
-                                                    <a href={data?.seo?.links?.broken_links?.broken_samples?.[1]?.url} target="_blank">{data?.seo?.links?.broken_links?.broken_samples?.[0]?.url}</a>
+                                                    <a href={data?.seo?.links?.broken_pages?.broken_samples?.[1]?.url} target="_blank">{data?.seo?.links?.broken_pages?.broken_samples?.[0]?.url}</a>
                                                 </span>
                                             </li>
                                             : null
